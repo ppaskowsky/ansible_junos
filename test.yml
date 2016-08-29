@@ -1,0 +1,16 @@
+---
+- name: Get Device Facts
+  hosts: all
+  connection: local
+  gather_facts: no
+  roles:
+  - Juniper.junos
+
+ 
+  tasks: 
+  - junos_get_facts:
+      host={{ inventory_hostname }}
+      user=peterp
+    register: junos
+  - debug:
+      var=hostvars[inventory_hostname] verbosity =4 
