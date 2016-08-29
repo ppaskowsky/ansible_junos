@@ -1,0 +1,4 @@
+
+[edit system]
+-  host-name labasw1;
++  host-name test;

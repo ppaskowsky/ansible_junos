@@ -6,7 +6,6 @@
   roles:
   - Juniper.junos
 
- 
   tasks: 
   - junos_get_facts:
       host={{ inventory_hostname }}

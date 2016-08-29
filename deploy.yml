@@ -1,0 +1,39 @@
+---
+
+- name: Prepare Environment
+  hosts: all
+  connection: local
+  gather_facts: no
+
+  tasks:
+  - name: Create dir for compiled configurations
+    file: path=compiled/{{ inventory_hostname }}/ state=directory
+    always_run: yes
+    changed_when: False
+    register: baseconfdir
+    tags:
+      - base
+  - name: Create empty diffs folder
+    file: path=diffs state=directory
+    always_run: yes
+    changed_when: False
+    tags:
+      - base
+
+ 
+- name: push config
+  hosts: all
+  roles:
+  - Juniper.junos
+  connection: local
+  gather_facts: no
+
+  tasks:
+  - name: Load the compiled configuration via "load replace"
+    junos_install_config:
+       host={{ inventory_hostname }}
+       user={{ user }}
+       timeout=240
+       replace=yes
+       file=compiled/{{ inventory_hostname }}/{{ inventory_hostname }}.conf
+       diffs_file=diffs/{{ inventory_hostname }}.diff
