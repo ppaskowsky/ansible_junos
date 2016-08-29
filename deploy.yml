@@ -20,11 +20,11 @@
     tags:
       - base
 
- 
 - name: push config
   hosts: all
   roles:
   - Juniper.junos
+  - banner
   connection: local
   gather_facts: no
 

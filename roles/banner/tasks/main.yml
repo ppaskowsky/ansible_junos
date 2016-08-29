@@ -1,0 +1,5 @@
+---
+- name: "Building JunOS SNMP Configuration for node"
+  template: src=banner.j2 dest={{baseconfdir.path}}/{{ inventory_hostname }}.conf
+  always_run: yes
+  changed_when: False

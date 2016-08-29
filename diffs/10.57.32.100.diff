@@ -1,4 +1,3 @@
 
-[edit system]
--  host-name labasw1;
-+  host-name test;
+[edit system login]
++   message "This switch is named test";
